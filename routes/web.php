@@ -14,7 +14,7 @@
 Route::get('/', function () {
     Artisan::call('cache:clear');
     Artisan::call('config:clear');
-    Artisan::call('cache:cache');
+    Artisan::call('config:cache');
     return 'ok';
 });
 
