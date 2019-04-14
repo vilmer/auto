@@ -12,7 +12,10 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    Artisan::call('cache:clear');
+    Artisan::call('config:clear');
+    Artisan::call('cache:cache');
+    return 'ok';
 });
 
 Auth::routes();
