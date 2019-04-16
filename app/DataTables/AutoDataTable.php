@@ -44,7 +44,7 @@ class AutoDataTable extends DataTable
         return $this->builder()
                     ->columns($this->getColumnsTable())
                     ->minifiedAjax()
-                    ->addAction(['width' => '80px'])
+                    ->addAction(['width' => '80px','title'=>'Acciones'])
                     ->parameters($this->getBuilderParameters());
     }
 
