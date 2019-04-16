@@ -2,10 +2,10 @@
 
 namespace App\DataTables;
 
-use App\Servicio;
+use App\Auto;
 use Yajra\DataTables\Services\DataTable;
 
-class ServicioDataTable extends DataTable
+class AutoDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -16,21 +16,20 @@ class ServicioDataTable extends DataTable
     public function dataTable($query)
     {
         return datatables($query)
-            ->addColumn('action', function($s){
-                $btnEliminar='<button type="buttton" onclick="eliminar(this);" data-url="'.route('eliminarServicio',$s->id).'" class="btn btn-danger btn-sm">Eliminar</button>';
-                $btnEditar='<a href="'.route('editarServicio',$s->id).'" class="btn btn-primary btn-sm">Editar</a>';
-                $bntOrden='<a class="btn btn-info btn-sm">Nueva orden</a>';
-                return $bntOrden.$btnEditar.$btnEliminar;
+             ->addColumn('action', function($s){
+                $btnEliminar='<button type="buttton" onclick="eliminar(this);" data-url="'.route('eliminarAuto',$s->id).'" class="btn btn-danger btn-sm">Eliminar</button>';
+                $btnEditar='<a href="'.route('editarAuto',$s->id).'" class="btn btn-primary btn-sm">Editar</a>';
+                return $btnEditar.$btnEliminar;
             })->rawColumns(['action']);
     }
 
     /**
      * Get query source of dataTable.
      *
-     * @param \App\User $model
+     * @param \App\Auto $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Servicio $model)
+    public function query(Auto $model)
     {
         return $model->newQuery()->select($this->getColumns());
     }
@@ -45,7 +44,7 @@ class ServicioDataTable extends DataTable
         return $this->builder()
                     ->columns($this->getColumnsTable())
                     ->minifiedAjax()
-                    ->addAction(['width' => '80px','title'=>'Acciones'])
+                    ->addAction(['width' => '80px'])
                     ->parameters($this->getBuilderParameters());
     }
 
@@ -58,8 +57,8 @@ class ServicioDataTable extends DataTable
     {
         return [
             'id',
-            'nombre',
-            'precio',
+            'placa',
+            'color',
             'descripcion',
             'created_at',
             'updated_at'
@@ -70,8 +69,8 @@ class ServicioDataTable extends DataTable
     {
         return [
             /*'id',*/
-            'nombre',
-            'precio',
+            'placa',
+            'color',
             'descripcion'=>['title'=>'Descripción'],
             'created_at'=>['title'=>'Creado'],
             'updated_at'=>['title'=>'Actualizado']
@@ -85,6 +84,6 @@ class ServicioDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'Servicio_' . date('YmdHis');
+        return 'Auto_' . date('YmdHis');
     }
 }

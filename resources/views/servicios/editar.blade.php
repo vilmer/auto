@@ -2,20 +2,21 @@
 
 @section('content')
 
-<div class="container-fluid mt-2">
+<div class="container mt-2">
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header bg-transparent">
-                    INGRESAR NUEVO SERVICIO
+                    ACTUALIZAR  SERVICIO
                 </div>
 
                 <div class="card-body">
-                   <form action="{{ route('guardarServicio') }}" method="post">
+                   <form action="{{ route('actualizarServicio') }}" method="post">
                     @csrf
+                    <input type="hidden" name="id" value="{{ $ser->id }}" required="">
                       <div class="form-group">
                         <label for="nombre">Servicio<span class="text-danger">*</span></label>
-                        <input type="text" class="form-control{{ $errors->has('nombre') ? ' is-invalid' : '' }}" id="nombre" aria-describedby="nombreHelp" placeholder="Ingrese.." value="{{ old('nombre') }}" name="nombre" autofocus="" required="">
+                        <input type="text" class="form-control{{ $errors->has('nombre') ? ' is-invalid' : '' }}" id="nombre" aria-describedby="nombreHelp" placeholder="Ingrese.." value="{{ $ser->nombre }}" name="nombre" autofocus="" required="">
                         <small id="nombreHelp" class="form-text text-muted">Ej, Cambio de llantas</small>
                         @if ($errors->has('nombre'))
                             <span class="invalid-feedback" role="alert">
@@ -26,7 +27,7 @@
 
                       <div class="form-group">
                         <label for="precio">Precio<span class="text-danger">*</span></label>
-                        <input type="text" class="form-control{{ $errors->has('precio') ? ' is-invalid' : '' }}" id="precio" aria-describedby="nombreHelp" placeholder="Ingrese.." value="{{ old('precio') }}" name="precio" required="">
+                        <input type="text" class="form-control{{ $errors->has('precio') ? ' is-invalid' : '' }}" id="precio" aria-describedby="nombreHelp" placeholder="Ingrese.." value="{{ $ser->precio }}" name="precio" required="">
                         <small id="nombreHelp" class="form-text text-muted">Ej, 10.00</small>
                         @if ($errors->has('precio'))
                             <span class="invalid-feedback" role="alert">
@@ -38,7 +39,7 @@
 
                         <div class="form-group">
                             <label for="descripcion">Descripción</label>
-                            <textarea class="form-control{{ $errors->has('descripcion') ? ' is-invalid' : '' }}" id="descripcion" rows="3" placeholder="Ingrese.." name="descripcion">{{ old('descripcion') }}</textarea>
+                            <textarea class="form-control{{ $errors->has('descripcion') ? ' is-invalid' : '' }}" id="descripcion" rows="3" placeholder="Ingrese.." name="descripcion">{{ $ser->descripcion }}</textarea>
 
                            
                             @if ($errors->has('descripcion'))
@@ -53,21 +54,10 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header bg-transparent">
-                    LISTADO DE SERVICIOS
-                </div>
-
-                <div class="card-body">
-                    {!! $dataTable->table()  !!}
-                </div>
-            </div>
-        </div>
+    
     </div>
 </div>
 
-{!! $dataTable->scripts() !!}
 
 <script>
     $('#m_servicios').addClass('btn-success');

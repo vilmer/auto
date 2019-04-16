@@ -28,7 +28,7 @@
                             </a>
                         </div>
                         <div class="col">
-                            <a href="">
+                            <a href="{{ route('servicios') }}">
                                 <div class="jumbotron jumbotron-fluid">
                                   <div class="container">
                                     <h2 class="">SERVICIOS</h2>
@@ -37,7 +37,7 @@
                             </a>
                         </div>
                         <div class="col">
-                            <a href="">
+                            <a href="{{ route('ordenes') }}">
                                 <div class="jumbotron jumbotron-fluid">
                                   <div class="container">
                                     <h1 class="">ORDENES</h1>
@@ -46,7 +46,7 @@
                             </a>
                         </div>
                         <div class="col">
-                            <a href="">
+                            <a href="{{ route('historial') }}">
                                 <div class="jumbotron jumbotron-fluid">
                                   <div class="container">
                                     <h1 class="">HISTORIAL</h1>

@@ -514,7 +514,9 @@ class ComposerStaticInitd8fd78a845696477241c62a2a9d9b836
     );
 
     public static $classMap = array (
+        'App\\Auto' => __DIR__ . '/../..' . '/app/Auto.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
+        'App\\DataTables\\AutoDataTable' => __DIR__ . '/../..' . '/app/DataTables/AutoDataTable.php',
         'App\\DataTables\\ServicioDataTable' => __DIR__ . '/../..' . '/app/DataTables/ServicioDataTable.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
@@ -532,6 +534,10 @@ class ComposerStaticInitd8fd78a845696477241c62a2a9d9b836
         'App\\Http\\Middleware\\TrimStrings' => __DIR__ . '/../..' . '/app/Http/Middleware/TrimStrings.php',
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
+        'App\\Http\\Requests\\RqActualizarAuto' => __DIR__ . '/../..' . '/app/Http/Requests/RqActualizarAuto.php',
+        'App\\Http\\Requests\\RqActualizarServ' => __DIR__ . '/../..' . '/app/Http/Requests/RqActualizarServ.php',
+        'App\\Http\\Requests\\RqIngreseOrden' => __DIR__ . '/../..' . '/app/Http/Requests/RqIngreseOrden.php',
+        'App\\Http\\Requests\\RqIngreseoAuto' => __DIR__ . '/../..' . '/app/Http/Requests/RqIngreseoAuto.php',
         'App\\Http\\Requests\\RqIngreseoServicio' => __DIR__ . '/../..' . '/app/Http/Requests/RqIngreseoServicio.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
@@ -4512,6 +4518,7 @@ class ComposerStaticInitd8fd78a845696477241c62a2a9d9b836
         'TijsVerkoyen\\CssToInlineStyles\\Css\\Property\\Property' => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src/Css/Property/Property.php',
         'TijsVerkoyen\\CssToInlineStyles\\Css\\Rule\\Processor' => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src/Css/Rule/Processor.php',
         'TijsVerkoyen\\CssToInlineStyles\\Css\\Rule\\Rule' => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src/Css/Rule/Rule.php',
+        'UsersTableSeeder' => __DIR__ . '/../..' . '/database/seeds/UsersTableSeeder.php',
         'Webmozart\\Assert\\Assert' => __DIR__ . '/..' . '/webmozart/assert/src/Assert.php',
         'Whoops\\Exception\\ErrorException' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Exception/ErrorException.php',
         'Whoops\\Exception\\Formatter' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Exception/Formatter.php',

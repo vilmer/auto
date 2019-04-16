@@ -6,7 +6,9 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\Auto' => $baseDir . '/app/Auto.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
+    'App\\DataTables\\AutoDataTable' => $baseDir . '/app/DataTables/AutoDataTable.php',
     'App\\DataTables\\ServicioDataTable' => $baseDir . '/app/DataTables/ServicioDataTable.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
@@ -24,6 +26,10 @@ return array(
     'App\\Http\\Middleware\\TrimStrings' => $baseDir . '/app/Http/Middleware/TrimStrings.php',
     'App\\Http\\Middleware\\TrustProxies' => $baseDir . '/app/Http/Middleware/TrustProxies.php',
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
+    'App\\Http\\Requests\\RqActualizarAuto' => $baseDir . '/app/Http/Requests/RqActualizarAuto.php',
+    'App\\Http\\Requests\\RqActualizarServ' => $baseDir . '/app/Http/Requests/RqActualizarServ.php',
+    'App\\Http\\Requests\\RqIngreseOrden' => $baseDir . '/app/Http/Requests/RqIngreseOrden.php',
+    'App\\Http\\Requests\\RqIngreseoAuto' => $baseDir . '/app/Http/Requests/RqIngreseoAuto.php',
     'App\\Http\\Requests\\RqIngreseoServicio' => $baseDir . '/app/Http/Requests/RqIngreseoServicio.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',
     'App\\Providers\\AuthServiceProvider' => $baseDir . '/app/Providers/AuthServiceProvider.php',
@@ -4004,6 +4010,7 @@ return array(
     'TijsVerkoyen\\CssToInlineStyles\\Css\\Property\\Property' => $vendorDir . '/tijsverkoyen/css-to-inline-styles/src/Css/Property/Property.php',
     'TijsVerkoyen\\CssToInlineStyles\\Css\\Rule\\Processor' => $vendorDir . '/tijsverkoyen/css-to-inline-styles/src/Css/Rule/Processor.php',
     'TijsVerkoyen\\CssToInlineStyles\\Css\\Rule\\Rule' => $vendorDir . '/tijsverkoyen/css-to-inline-styles/src/Css/Rule/Rule.php',
+    'UsersTableSeeder' => $baseDir . '/database/seeds/UsersTableSeeder.php',
     'Webmozart\\Assert\\Assert' => $vendorDir . '/webmozart/assert/src/Assert.php',
     'Whoops\\Exception\\ErrorException' => $vendorDir . '/filp/whoops/src/Whoops/Exception/ErrorException.php',
     'Whoops\\Exception\\Formatter' => $vendorDir . '/filp/whoops/src/Whoops/Exception/Formatter.php',

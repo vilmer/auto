@@ -118,7 +118,11 @@ trait AuthenticatesUsers
      */
     protected function authenticated(Request $request, $user)
     {
-        //
+         if (!$user->perfil=='gerente') {
+            auth()->logout();
+            return back()->with('danger', 'Acceso denegado.');   
+        }
+        return redirect()->intended($this->redirectPath());
     }
 
     /**

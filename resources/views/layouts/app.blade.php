@@ -8,6 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
+    <link rel="SHORTCUT ICON" href="{{ asset('img/faviconUTC.ico') }}" type="image/x-icon" />
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
@@ -37,6 +38,26 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.18/b-1.5.6/b-flash-1.5.6/b-html5-1.5.6/b-print-1.5.6/datatables.min.js"></script>
 
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+
+<link rel="stylesheet" href="{{ asset('css/jquery.steps.css') }}">
+<script src="{{ asset('js/jquery.steps.min.js') }}"></script>
+
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.7/dist/css/bootstrap-select.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.7/dist/js/bootstrap-select.min.js"></script>
+
+<!-- (Optional) Latest compiled and minified JavaScript translation files -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.7/dist/js/i18n/defaults-*.min.js"></script>
+
+<script src="{{ asset('js/jquery.validate.min.js') }}"></script>
+<script src="{{ asset('js/messages_es.js') }}"></script>
+
 <script src="{{ asset('vendor/datatables/buttons.server-side.js') }}"></script>
 </head>
 
@@ -61,13 +82,13 @@
 
 
                  <li class="nav-item mx-0 mx-lg-1">
-                    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#portfolio">Módulos</a>
+                    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{{ url('/') }}#portfolio">Módulos</a>
                   </li>
                   <li class="nav-item mx-0 mx-lg-1">
-                    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#about">Acerca de</a>
+                    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{{ url('/') }}#about">Acerca de</a>
                   </li>
                   <li class="nav-item mx-0 mx-lg-1">
-                    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#contact">Contactos</a>
+                    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{{ url('/') }}#contact">Contactos</a>
                   </li>
                 <li class="nav-item mx-0 mx-lg-1">
                     <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger btn-success" href="{{ route('login') }}">{{ __('INGRESAR') }}</a>
@@ -88,14 +109,14 @@
                     <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" id="m_autos" href="{{ route('autos') }}">AUTOS</a>
                 </li>
                 <li class="nav-item mx-0 mx-lg-1">
-                    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{{ route('servicios') }}">SERVICIOS</a>
+                    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" id="m_servicios" href="{{ route('servicios') }}">SERVICIOS</a>
                 </li>
                 <li class="nav-item mx-0 mx-lg-1">
-                    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#contact">ORDENES</a>
+                    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" id="m_odernes" href="{{ route('ordenes') }}">ORDENES</a>
                 </li>
 
                 <li class="nav-item mx-0 mx-lg-1">
-                    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#contact">HISTORIAL</a>
+                    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" id="m_historial" href="{{ route('historial') }}">HISTORIAL</a>
                 </li>
 
                 <li class="nav-item mx-0 mx-lg-1 dropdown">
@@ -377,6 +398,32 @@
 
   <!-- Custom scripts for this template -->
   <script src="{{ asset('dist/js/freelancer.min.js') }}"></script>
+
+
+
+  <script>
+    
+     function eliminar(argument) {
+        var urlElimnar=$(argument).data('url');
+        $.confirm({
+            title: '¿Estás seguro?',
+            content: 'Tu no podrás recuperar este archivo!',
+            buttons: {
+                eliminar: {
+                    text: '¡Sí, bórralo!',
+                    btnClass: 'btn-red',
+                    action: function(){
+                        window.location.href = urlElimnar;
+                    }
+                },
+                cancel:{
+                    text:'Cancelar'
+                }
+            }
+        });
+    }
+
+  </script>
 
 </body>
 
