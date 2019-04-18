@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="container">
+<div class="container mt-3">
     <div class="row">
         <div class="col-md-12">
             <div class="card">
@@ -12,96 +12,46 @@
 
                 <div class="card-body">
                     
+                 <form id="" action="{{ route('ingresoOrden') }}" method="post">
+                    @csrf
+                    @if(count($autos)>0)
+                      <div class="form-group">
+                        <label for="vehiculo">Selecione vehículo</label>
+                        <select class="selectpicker show-tick show-menu-arrow form-control" data-live-search="true" title="Selecione vehículo..." data-header="Selecione vehículo" required="" name="vehiculo" data-none-results-text="No hay resultados coincidentes {0}<button type='button' class='btn btn-link' data-toggle='modal' data-target='#MODALAUTO'>Registrar vehículo</button>">
+                           @foreach($autos as $a)
+                            <option value="{{ $a->id }}" data-subtext="{{ $a->color }}" {{ (old('vehiculo') == $a->id ? 'selected':'') }}>{{ $a->placa }}</option>
+                           @endforeach
+                          </select>
+                      </div>
+                      @else
+                          <div class="alert alert-primary" role="alert">
+                            No existe autos, por favor ingrese uno.
+                          </div>
+                      @endif
 
+                       <label for="servicios">Catálogo de mantenimientos</label>
+                      <br>
+                     @if(count($servicios)>0)
 
-                    <form id="example-form" action="{{ route('ingresoOrden') }}" method="post">
-                         @csrf
-                        <div>
-                            <h3>ENCARGADO</h3>
-                            <section>
-                                
-                                @if(count($encargados)>0)
-                                <div class="form-group">
-                                  <select class="selectpicker show-tick show-menu-arrow form-control" data-live-search="true" title="Selecione encargado..." data-header="Selecione encargado" required="" name="empleado">
-                                     @foreach($encargados as $e)
-                                      <option value="{{ $e->id }}" data-subtext="{{ $e->email }}" {{ (old('empleado') == $e->id ? 'selected':'') }}>{{ $e->name }}</option>
-                                     @endforeach
-                                    </select>
-                                </div>
-                                @else
-                                    <div class="alert alert-primary" role="alert">
-                                      No existe empleados, por favor ingrese uno.
-                                    </div>
-                                @endif
+                             
+                             @foreach($servicios as $ser)
+                             <div class="form-check form-check-inline">
 
-                                <hr>
-                                <p class="text-center">o</p>
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                                  CREAR  NUEVO ENCARGADO
-                                </button>
-                            </section>
-                            <h3>VEHICULO</h3>
-                            <section>
-                              
-                               @if(count($autos)>0)
-                                <div class="form-group">
-                                  <select class="selectpicker show-tick show-menu-arrow form-control" data-live-search="true" title="Selecione auto..." data-header="Selecione auto" required="" name="vehiculo">
-                                     @foreach($autos as $a)
-                                      <option value="{{ $a->id }}" data-subtext="{{ $a->color }}" {{ (old('vehiculo') == $a->id ? 'selected':'') }}>{{ $a->placa }}</option>
-                                     @endforeach
-                                    </select>
-                                </div>
-                                @else
-                                    <div class="alert alert-primary" role="alert">
-                                      No existe autos, por favor ingrese uno.
-                                    </div>
-                                @endif
-                                <hr>
-                                <p class="text-center">o</p>
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#MODALAUTO">
-                                  CREAR  NUEVO AUTO
-                                </button>
+                              <input class="form-check-input" type="checkbox" name="servicios[]" id="inlineCheckbox{{$ser->id }}" value="{{ $ser->id }}" {{ (collect(old('servicios'))->contains($ser->id)) ? 'checked':'' }}>
+                              <label class="form-check-label" for="inlineCheckbox{{$ser->id }}">{{ $ser->nombre }}</label>
+                            </div>
+                             @endforeach
 
-
-                            </section>
-                            <h3>SERVICIOS</h3>
-                            <section>
-
-                                @if(count($servicios)>0)
-                                   
-                                  
-                                    
-                                    <div class="form-group">
-                                      <select class="selectpicker show-tick show-menu-arrow form-control" data-live-search="true" title="Selecione servicios..." data-header="Selecione servicios" multiple data-actions-box="true" required="" name="servicios[]">
-                                         @foreach($servicios as $ser)
-                                          <option value="{{ $ser->id }}" data-subtext="$ {{ $ser->precio }}" {{ (collect(old('servicios'))->contains($ser->id)) ? 'selected':'' }}>{{ $ser->nombre }}</option>
-                                         @endforeach
-                                        </select>
-                                    </div>
-
-                                @else
-                                    <div class="alert alert-primary" role="alert">
-                                      No existe servicios, por favor ingrese uno.
-                                    </div>
-                                @endif
-
-                                <hr>
-                                <p class="text-center">o</p>
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#MODALSERVICIO">
-                                  CREAR  NUEVO SERVICIO
-                                </button>
-
-
-                            </section>
-                            <h3>Terminar</h3>
-                            <section>
-                                <div class="form-group">
-                                    <label for="exampleFormControlTextarea1">Detalles de ingresos</label>
-                                    <textarea class="form-control" id="exampleFormControlTextarea1" required="" name="detalle" rows="5">{{ old('detalle') }}</textarea>
-                                </div>
-                            </section>
+                    @else
+                        <div class="alert alert-primary" role="alert">
+                          No existe servicios, por favor ingrese uno.
                         </div>
-                    </form>
+                    @endif
+                   
+
+
+                    <button type="submit" class="btn btn-primary float-right">Generar nueva orden</button>
+                  </form>
 
 
 
@@ -130,6 +80,8 @@
         
         <form method="POST" action="{{ route('registroEmpleado') }}">
             @csrf
+
+           
 
             <div class="form-group row">
                 <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
@@ -213,9 +165,21 @@
          <form action="{{ route('guardarAuto') }}" method="post">
             @csrf
             <input type="hidden" name="opcion" value="orden">
+
+             <div class="form-group">
+                <label for="duenio" class="">{{ __('DUEÑO') }}<span class="text-danger">*</span> </label>
+                  <input id="duenio" type="text" class="form-control{{ $errors->has('duenio') ? ' is-invalid' : '' }}" name="duenio" value="{{ old('duenio') }}" required placeholder="Ingrese.." autofocus>
+
+                  @if ($errors->has('duenio'))
+                      <span class="invalid-feedback" role="alert">
+                          <strong>{{ $errors->first('duenio') }}</strong>
+                      </span>
+                  @endif
+            </div>
+
               <div class="form-group">
                 <label for="placa">PLACA<span class="text-danger">*</span></label>
-                <input type="text" class="form-control{{ $errors->has('placa') ? ' is-invalid' : '' }}" id="placa" aria-describedby="nombreHelp" placeholder="Ingrese.." value="{{ old('placa') }}" name="placa" autofocus="" required="">
+                <input type="text" class="form-control{{ $errors->has('placa') ? ' is-invalid' : '' }}" id="placa" aria-describedby="nombreHelp" placeholder="Ingrese.." value="{{ old('placa') }}" name="placa" required="">
                 <small id="nombreHelp" class="form-text text-muted">Ej, XBA-001</small>
                 @if ($errors->has('placa'))
                     <span class="invalid-feedback" role="alert">
@@ -319,41 +283,5 @@
 
 <script>
     $('#m_odernes').addClass('btn-success');
-
-
-    var form = $("#example-form");
-    form.validate({
-        errorPlacement: function errorPlacement(error, element) { element.before(error); },
-    });
-   
-    form.children("div").steps({
-        headerTag: "h3",
-        bodyTag: "section",
-        transitionEffect: "slideLeft",
-        onStepChanging: function (event, currentIndex, newIndex)
-        {
-            form.validate().settings.ignore = ":disabled,:hidden";
-            return form.valid();
-        },
-        onFinishing: function (event, currentIndex)
-        {
-            form.validate().settings.ignore = ":disabled";
-            return form.valid();
-        },
-        onFinished: function (event, currentIndex)
-        {
-            form.submit();
-        },
-         labels: {
-            cancel: "Cancelar",
-            current: "paso actual:",
-            pagination: "Paginación",
-            finish: "Terminar",
-            next: "Siguiente",
-            previous: "Anterior",
-            loading: "Cargando ..."
-        }
-    });
-
 </script>
 @endsection

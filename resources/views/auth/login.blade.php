@@ -1,14 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-<section class="my-5">
-<div class="container">
+
+<div class="container mt-3">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header bg-transparent">
-                    <img src="https://www.lifewire.com/thmb/nG22T76_24yX8lPYdIgXdUypBW0=/768x0/filters:no_upscale():max_bytes(150000):strip_icc()/win10timeline-5b0a410a1d64040037f6b391.jpg" class="img-fluid"  alt="">
-                </div>
+                 <div class="card-header">{{ __('Login') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
@@ -73,5 +71,5 @@
         </div>
     </div>
 </div>
-</section>
+
 @endsection

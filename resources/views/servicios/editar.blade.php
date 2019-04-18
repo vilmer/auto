@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="container mt-2">
+<div class="container mt-3">
     <div class="row">
         <div class="col-md-12">
             <div class="card">
@@ -50,6 +50,7 @@
                         </div>
 
                       <button type="submit" class="btn btn-primary">GUARDAR</button>
+                      <a href="{{ route('servicios') }}" class="btn btn-danger">Cancelar</a>
                     </form>
                 </div>
             </div>

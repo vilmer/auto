@@ -17,6 +17,8 @@ use App\DataTables\ServicioDataTable;
 use App\DataTables\AutoDataTable;
 use App\DataTables\OrdenDataTable;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+
 use PDF;
 class HomeController extends Controller
 {
@@ -87,7 +89,7 @@ class HomeController extends Controller
     {
        
        $o=new Orden;
-       $o->user_id=$request->empleado;
+       $o->user_id=Auth::id();
        $o->auto_id=$request->vehiculo;
        $o->detalle=$request->detalle;
        $o->save();
@@ -192,8 +194,9 @@ class HomeController extends Controller
         $ser->placa=$request->placa;
         $ser->color=$request->color;
         $ser->descripcion=$request->descripcion;
+        $ser->duenio=$request->duenio;
         $ser->save();
-        $request->session()->flash('success','Auto guardado');
+        $request->session()->flash('success','Vehículo guardado');
         if ($request->opcion=='orden') {
             return redirect()->route('ordenes');
         }else{
@@ -207,9 +210,9 @@ class HomeController extends Controller
         try {
             $ser=Auto::find($idAuto);
             $ser->delete();
-            $request->session()->flash('success','Auto eliminado');
+            $request->session()->flash('success','Vehículo eliminado');
         } catch (\Exception $e) {
-            $request->session()->flash('info','Auto no eliminado');
+            $request->session()->flash('info','Vehículo no eliminado');
         }
         return redirect()->route('autos');   
     }
@@ -228,7 +231,7 @@ class HomeController extends Controller
         $ser->color=$request->color;
         $ser->descripcion=$request->descripcion;
         $ser->save();
-        $request->session()->flash('success','Auto actualizado');
+        $request->session()->flash('success','Vehículo actualizado');
         return redirect()->route('autos');
     }
 }

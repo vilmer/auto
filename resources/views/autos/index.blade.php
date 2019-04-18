@@ -2,17 +2,27 @@
 
 @section('content')
 
-<div class="container-fluid">
+<div class="container-fluid mt-3">
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-3">
             <div class="card">
                 <div class="card-header bg-transparent">
-                    INGRESAR NUEVO AUTO
+                    INGRESAR NUEVO VEHÍCULO
                 </div>
 
                 <div class="card-body">
                     <form action="{{ route('guardarAuto') }}" method="post">
                     @csrf
+                     <div class="form-group">
+                        <label for="duenio" class="">{{ __('DUEÑO') }}<span class="text-danger">*</span> </label>
+                          <input id="duenio" type="text" class="form-control{{ $errors->has('duenio') ? ' is-invalid' : '' }}" name="duenio" value="{{ old('duenio') }}" required placeholder="Ingrese.." autofocus>
+
+                          @if ($errors->has('duenio'))
+                              <span class="invalid-feedback" role="alert">
+                                  <strong>{{ $errors->first('duenio') }}</strong>
+                              </span>
+                          @endif
+                    </div>
                       <div class="form-group">
                         <label for="placa">PLACA<span class="text-danger">*</span></label>
                         <input type="text" class="form-control{{ $errors->has('placa') ? ' is-invalid' : '' }}" id="placa" aria-describedby="nombreHelp" placeholder="Ingrese.." value="{{ old('placa') }}" name="placa" autofocus="" required="">
@@ -38,7 +48,7 @@
 
                         <div class="form-group">
                             <label for="descripcion">Descripción</label>
-                            <textarea class="form-control{{ $errors->has('descripcion') ? ' is-invalid' : '' }}" id="descripcion" rows="3" placeholder="Ingrese todos los detalles del auto..." name="descripcion">{{ old('descripcion') }}</textarea>
+                            <textarea class="form-control{{ $errors->has('descripcion') ? ' is-invalid' : '' }}" id="descripcion" rows="3" placeholder="Ingrese detalles..." name="descripcion">{{ old('descripcion') }}</textarea>
 
                           
                             @if ($errors->has('descripcion'))
@@ -53,10 +63,10 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-9">
             <div class="card">
                 <div class="card-header bg-transparent">
-                    LISTADO DE AUTOS
+                    LISTADO DE VEHÍCULOS
                 </div>
 
                 <div class="card-body">

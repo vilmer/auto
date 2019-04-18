@@ -13,17 +13,13 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
 
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
-
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
   <!-- Custom fonts for this template -->
   <link href="{{ asset('dist/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+  <link href="{{ asset('fonts/font.css') }}" rel="stylesheet" type="text/css">
+  
 
   <!-- Plugin CSS -->
   <link href="{{asset('dist/vendor/magnific-popup/magnific-popup.css')}}" rel="stylesheet" type="text/css">
@@ -31,32 +27,18 @@
   <!-- Custom styles for this template -->
   <link href="{{ asset('dist/css/freelancer.min.css') }}" rel="stylesheet">
   
-  
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.18/b-1.5.6/b-flash-1.5.6/b-html5-1.5.6/b-print-1.5.6/datatables.min.css"/>
- 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.18/b-1.5.6/b-flash-1.5.6/b-html5-1.5.6/b-print-1.5.6/datatables.min.js"></script>
+  <link rel="stylesheet" href="{{ asset('pus/sweet/sweetalert.css') }}">
+  <script src="{{ asset('pus/sweet/sweetalert.min.js') }}"></script>
+
+<link rel="stylesheet" href="{{ asset('pus/DataTables/datatables.css') }}">
 
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+<script src="{{ asset('pus/DataTables/datatables.min.js') }}"></script>
+<script src="{{ asset('pus/DataTables/DataTables-1.10.18/js/dataTables.bootstrap4.min.js') }}"></script>
 
-<link rel="stylesheet" href="{{ asset('css/jquery.steps.css') }}">
-<script src="{{ asset('js/jquery.steps.min.js') }}"></script>
-
-
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.7/dist/css/bootstrap-select.min.css">
-
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.7/dist/js/bootstrap-select.min.js"></script>
-
-<!-- (Optional) Latest compiled and minified JavaScript translation files -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.7/dist/js/i18n/defaults-*.min.js"></script>
-
-<script src="{{ asset('js/jquery.validate.min.js') }}"></script>
-<script src="{{ asset('js/messages_es.js') }}"></script>
+<link rel="stylesheet" href="{{ asset('pus/dist/css/bootstrap-select.min.css') }}">
+<script src="{{ asset('pus/dist/js/bootstrap-select.min.js') }}"></script>
+<script src="{{ asset('pus/dist/js/i18n/defaults-es_ES.js') }}"></script>
 
 <script src="{{ asset('vendor/datatables/buttons.server-side.js') }}"></script>
 </head>
@@ -66,7 +48,7 @@
 
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg bg-secondary fixed-top text-uppercase" id="mainNav">
-    <div class="container">
+    <div class="container-fluid">
       <a class="navbar-brand js-scroll-trigger" href="{{ url('/') }}#page-top">{{ config('app.name', 'Laravel') }}</a>
       <button class="navbar-toggler navbar-toggler-right text-uppercase bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         Menu
@@ -81,17 +63,17 @@
            @guest
 
 
-                 <li class="nav-item mx-0 mx-lg-1">
-                    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{{ url('/') }}#portfolio">Módulos</a>
+                 <li class="nav-item ">
+                    <a class="nav-link  rounded js-scroll-trigger" href="{{ url('/') }}#portfolio">Módulos</a>
                   </li>
-                  <li class="nav-item mx-0 mx-lg-1">
-                    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{{ url('/') }}#about">Acerca de</a>
+                  <li class="nav-item ">
+                    <a class="nav-link  rounded js-scroll-trigger" href="{{ url('/') }}#about">Acerca de</a>
                   </li>
-                  <li class="nav-item mx-0 mx-lg-1">
-                    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{{ url('/') }}#contact">Contactos</a>
+                  <li class="nav-item ">
+                    <a class="nav-link  rounded js-scroll-trigger" href="{{ url('/') }}#contact">Contactos</a>
                   </li>
-                <li class="nav-item mx-0 mx-lg-1">
-                    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger btn-success" href="{{ route('login') }}">{{ __('INGRESAR') }}</a>
+                <li class="nav-item ">
+                    <a class="nav-link  rounded js-scroll-trigger btn-success" href="{{ route('login') }}">{{ __('INGRESAR') }}</a>
                 </li>
               {{--   @if (Route::has('register'))
                     <li class="nav-item">
@@ -102,25 +84,28 @@
 
                  
             @else
-              <li class="nav-item mx-0 mx-lg-1">
-                    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" id="m_home" href="{{ route('home') }}">INICIO</a>
-                </li>
-                <li class="nav-item mx-0 mx-lg-1">
-                    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" id="m_autos" href="{{ route('autos') }}">AUTOS</a>
-                </li>
-                <li class="nav-item mx-0 mx-lg-1">
-                    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" id="m_servicios" href="{{ route('servicios') }}">SERVICIOS</a>
-                </li>
-                <li class="nav-item mx-0 mx-lg-1">
-                    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" id="m_odernes" href="{{ route('ordenes') }}">ORDENES</a>
-                </li>
 
-                <li class="nav-item mx-0 mx-lg-1">
-                    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" id="m_historial" href="{{ route('historial') }}">HISTORIAL</a>
+              <li class="nav-item ">
+                    <a class="nav-link  rounded js-scroll-trigger" id="m_home" href="{{ route('home') }}">INICIO</a>
                 </li>
+                  <li class="nav-item ">
+                    <a class="nav-link  rounded js-scroll-trigger" id="m_odernes" href="{{ route('ordenes') }}">AGREGAR ORDEN</a>
+                </li>
+                   <li class="nav-item ">
+                    <a class="nav-link  rounded js-scroll-trigger" id="m_historial" href="{{ route('historial') }}">HISTORIAL</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link  rounded js-scroll-trigger" id="m_autos" href="{{ route('autos') }}">Vehículos</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link  rounded js-scroll-trigger" id="m_servicios" href="{{ route('servicios') }}">SERVICIOS</a>
+                </li>
+              
 
-                <li class="nav-item mx-0 mx-lg-1 dropdown">
-                    <a id="navbarDropdown" class="nav-link dropdown-toggle py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+             
+
+                <li class="nav-item  dropdown">
+                    <a id="navbarDropdown" class="nav-link dropdown-toggle  rounded js-scroll-trigger" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                        {{ Auth::user()->email }} <span class="caret"></span>
                     </a>
 
@@ -163,16 +148,12 @@
 
 @endif
 
-@foreach (['success', 'warning', 'info', 'danger'] as $msg)
+@foreach (['success', 'warning', 'info', 'error'] as $msg)
     @if(Session::has($msg))
+    <script>
+      swal("", "{{ Session::get($msg) }}", "{{ $msg }}")
 
-        <div class="alert alert-{{ $msg }} alert-dismissible alert-styled-left fade show" role="alert">
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-          <strong>{{ Session::get($msg) }}</strong>
-        </div> 
-
+    </script>
     @endif
 @endforeach
 
@@ -405,22 +386,22 @@
     
      function eliminar(argument) {
         var urlElimnar=$(argument).data('url');
-        $.confirm({
-            title: '¿Estás seguro?',
-            content: 'Tu no podrás recuperar este archivo!',
-            buttons: {
-                eliminar: {
-                    text: '¡Sí, bórralo!',
-                    btnClass: 'btn-red',
-                    action: function(){
-                        window.location.href = urlElimnar;
-                    }
-                },
-                cancel:{
-                    text:'Cancelar'
-                }
-            }
+
+        swal({
+          title: "¿Estás seguro?",
+          text: "Tu no podrás recuperar este información!",
+          type: "warning",
+          showCancelButton: true,
+          confirmButtonClass: "btn-danger",
+          confirmButtonText: "Si, borrar esto!",
+          closeOnConfirm: false,
+          cancelButtonText:"Cancelar"
+        },
+        function(){
+          window.location.href = urlElimnar;
         });
+
+
     }
 
   </script>

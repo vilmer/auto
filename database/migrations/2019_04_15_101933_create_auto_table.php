@@ -19,6 +19,7 @@ class CreateAutoTable extends Migration
              $table->string('placa');
             $table->string('color');
             $table->string('descripcion')->nullable();
+            $table->string('duenio')->nullable();
         });
     }
 

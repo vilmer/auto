@@ -27,7 +27,8 @@ class RqIngreseoAuto extends FormRequest
         return [
             'placa' => 'required|max:255|string|unique:auto,placa',
             'color' => 'required|max:255|string',
-            'descripcion'=>'nullable|max:255|string'
+            'descripcion'=>'nullable|max:255|string',
+            'duenio'=>'nullable|max:255|string'
         ];
     }
 }

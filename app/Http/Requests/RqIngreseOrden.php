@@ -24,10 +24,10 @@ class RqIngreseOrden extends FormRequest
     public function rules()
     {
         return [
-            'empleado'=>'required',
+            // 'empleado'=>'required',
             'vehiculo'=>'required',
             'servicios.*'=>'required',
-            'detalle'=>'required|max:255'
+            'detalle'=>'nullable|max:255'
         ];
     }
 }

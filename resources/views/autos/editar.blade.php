@@ -2,12 +2,12 @@
 
 @section('content')
 
-<div class="container mt-2">
+<div class="container mt-3">
     <div class="row">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header bg-transparent">
-                    ACTUALIZAR  AUTO
+                    ACTUALIZAR  VEHÍCULO
                 </div>
 
                 <div class="card-body">
@@ -39,7 +39,7 @@
 
                         <div class="form-group">
                             <label for="descripcion">Descripción</label>
-                            <textarea class="form-control{{ $errors->has('descripcion') ? ' is-invalid' : '' }}" id="descripcion" rows="3" placeholder="Ingrese todos los detalles del auto..." name="descripcion">{{ $auto->descripcion }}</textarea>
+                            <textarea class="form-control{{ $errors->has('descripcion') ? ' is-invalid' : '' }}" id="descripcion" rows="3" placeholder="Ingrese detalles..." name="descripcion">{{ $auto->descripcion }}</textarea>
 
                             
                             @if ($errors->has('descripcion'))
@@ -50,6 +50,7 @@
                         </div>
 
                       <button type="submit" class="btn btn-primary">GUARDAR</button>
+                      <a href="{{ route('autos') }}" class="btn btn-danger">Cancelar</a>
                     </form>
                 </div>
             </div>
@@ -60,6 +61,6 @@
 
 
 <script>
-    $('#m_servicios').addClass('btn-success');
+    $('#m_autos').addClass('btn-success');
 </script>
 @endsection

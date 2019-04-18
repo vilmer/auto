@@ -20,10 +20,9 @@ class OrdenDataTable extends DataTable
             ->editColumn('user_id',function($o){
                 return $o->empleado->name.'<small> '.$o->empleado->email.'</small>';
             })
-            ->filterColumn('user_id', function($query, $keyword) {
-                $query->whereRaw("(select count(1) from users where users.id = user_id and CONCAT(users.name ,' ',users.email ) like ?) >= 1", ["%{$keyword}%"]);
+            ->editColumn('created_at',function($o){
+                return $o->created_at.'<small> '.$o->created_at->diffForHumans().'</small>';
             })
-
             ->editColumn('auto_id',function($o){
                 return $o->auto->placa.'<small> '.$o->auto->color.'</small>';
             })
@@ -31,19 +30,20 @@ class OrdenDataTable extends DataTable
                 $query->whereRaw("(select count(1) from auto where auto.id = auto_id and CONCAT(auto.placa ,' ',auto.color ) like ?) >= 1", ["%{$keyword}%"]);
             })
             ->addColumn('servicios',function($o){
-                
+
                 return $o->ser->map(function($s) {
                     return '<span class="badge badge-pill badge-dark">'.$s->nombre.'<small> $'.$s->precio.'</small></span>';
                 })->implode('<br>');
                 
             })
+            
 
             ->addColumn('action', function($o){
-                $imprimir='<a href="'.route('imprimirOrden',$o->id).'" class="btn btn-primary btn-lg"><i class="fas fa-print"></i></a>';
-                $eliminar='<button type="button" class="btn btn-danger" data-url="'.route('eliminarOrden',$o->id).'" onclick="eliminar(this);">Eliminar</button>';
-                return $imprimir.$eliminar;
+                return view('ordenes.acciones', ['o'=>$o])->render();
             })
-            ->rawColumns(['action','user_id','auto_id','servicios']);
+
+
+            ->rawColumns(['action','user_id','auto_id','servicios','created_at']);
     }
 
     /**
@@ -54,7 +54,7 @@ class OrdenDataTable extends DataTable
      */
     public function query(Orden $model)
     {
-        return $model->newQuery()->select($this->getColumns());
+        return $model->newQuery()->select($this->getColumns())->orderBy('created_at','desc');
     }
 
     /**
@@ -67,7 +67,7 @@ class OrdenDataTable extends DataTable
         return $this->builder()
                     ->columns($this->getColumnsTable())
                     ->minifiedAjax()
-                    ->addAction(['width' => '80px','title'=>'Imprimir'])
+                    ->addAction(['width' => '80px','title'=>'Acciones'])
                     ->parameters($this->getBuilderParameters());
     }
 
@@ -94,9 +94,9 @@ class OrdenDataTable extends DataTable
     {
         return [
             /*'id',*/
-            'user_id'=>['title'=>'Empleado','data'=>'user_id'],
+            /*'user_id'=>['title'=>'Empleado','data'=>'user_id'],*/
             'auto_id'=>['title'=>'Auto'],
-            'detalle'=>['title'=>'Detalle'],
+            /*'detalle'=>['title'=>'Detalle'],*/
             'servicios'=>['title'=>'Servicios'],
             'created_at'=>['title'=>'Creado'],
             'updated_at'=>['title'=>'Actualizado']

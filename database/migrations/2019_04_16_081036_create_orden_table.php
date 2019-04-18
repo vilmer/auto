@@ -24,7 +24,7 @@ class CreateOrdenTable extends Migration
             $table->unsignedBigInteger('auto_id');
             $table->foreign('auto_id')->references('id')->on('auto')->onDelete('cascade');
 
-            $table->text('detalle');
+            $table->text('detalle')->nullable();
 
 
         });

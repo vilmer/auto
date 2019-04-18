@@ -17,10 +17,10 @@ class ServicioDataTable extends DataTable
     {
         return datatables($query)
             ->addColumn('action', function($s){
-                $btnEliminar='<button type="buttton" onclick="eliminar(this);" data-url="'.route('eliminarServicio',$s->id).'" class="btn btn-danger btn-sm">Eliminar</button>';
-                $btnEditar='<a href="'.route('editarServicio',$s->id).'" class="btn btn-primary btn-sm">Editar</a>';
-                $bntOrden='<a class="btn btn-info btn-sm">Nueva orden</a>';
-                return $bntOrden.$btnEditar.$btnEliminar;
+               
+                return view('servicios.acciones', ['s'=>$s])->render();
+
+
             })->rawColumns(['action']);
     }
 

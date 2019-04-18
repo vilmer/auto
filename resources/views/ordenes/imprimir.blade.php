@@ -16,16 +16,11 @@
 </head>
 <body>
 	<center><h1>Orden # {{ $o->id }}</h1></center>	
-	<i>Información de encargado</i>
+	<i>Información de Dueño</i>
 	<table>
 		<tr>
-			<td><strong>NOMBRES</strong></td>
-			<td>{{ $o->empleado->name }}</td>
-		</tr>
-		<tr>
-		
-			<td><strong>Email</strong></td>
-			<td>{{ $o->empleado->email }}</td>
+			<td><strong>Dueño</strong></td>
+			<td>{{ $o->auto->duenio }}</td>
 		</tr>
 	</table>
 <br>
@@ -87,14 +82,7 @@
 		</tr>
 	</table>
 <br>
-		<i>Detalle de ingreso</i>
-		<table>
-			<tr>
-				<td>
-					{{ $o->detalle }}
-				</td>
-			</tr>
-		</table>
+		
 		<i>Fecha creado: {{ $o->created_at }} <small>{{ $o->created_at->diffForHumans() }}</small></i><br>
 		<i>Fecha actualizado: {{ $o->updated_at }} <small>{{ $o->updated_at->diffForHumans() }}</small></i>
 		<br>

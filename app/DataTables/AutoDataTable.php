@@ -17,9 +17,7 @@ class AutoDataTable extends DataTable
     {
         return datatables($query)
              ->addColumn('action', function($s){
-                $btnEliminar='<button type="buttton" onclick="eliminar(this);" data-url="'.route('eliminarAuto',$s->id).'" class="btn btn-danger btn-sm">Eliminar</button>';
-                $btnEditar='<a href="'.route('editarAuto',$s->id).'" class="btn btn-primary btn-sm">Editar</a>';
-                return $btnEditar.$btnEliminar;
+                  return view('autos.acciones', ['s'=>$s])->render();
             })->rawColumns(['action']);
     }
 
@@ -57,6 +55,7 @@ class AutoDataTable extends DataTable
     {
         return [
             'id',
+            'duenio',
             'placa',
             'color',
             'descripcion',
@@ -69,6 +68,7 @@ class AutoDataTable extends DataTable
     {
         return [
             /*'id',*/
+            'duenio'=>['title'=>'Dueño'],
             'placa',
             'color',
             'descripcion'=>['title'=>'Descripción'],
