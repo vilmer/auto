@@ -181,6 +181,7 @@ return [
         Barryvdh\DomPDF\ServiceProvider::class,
         Barryvdh\Snappy\ServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
+        Laraveles\Spanish\SpanishServiceProvider::class,
         
 
     ],
