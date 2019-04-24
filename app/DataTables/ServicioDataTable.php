@@ -19,8 +19,10 @@ class ServicioDataTable extends DataTable
     {
         return datatables($query)
             ->editColumn('foto',function($s){
-                $url=Storage::url('public/servicios/'.$s->foto);
-                return '<img src="'.$url.'" alt="" class="img-fluid" >';
+                
+                return view('servicios.foto', ['s'=>$s])->render();
+              
+                
             })
             ->addColumn('action', function($s){
                
@@ -77,7 +79,7 @@ class ServicioDataTable extends DataTable
     {
         return [
             /*'id',*/
-            'foto'=>['exportable' => false],
+            'foto'=>['exportable' => false,'printable' => false],
             'nombre',
             'precio',
             'descripcion'=>['title'=>'Descripción'],
