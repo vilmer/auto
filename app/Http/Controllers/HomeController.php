@@ -18,8 +18,10 @@ use App\DataTables\AutoDataTable;
 use App\DataTables\OrdenDataTable;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
-
+use Carbon\Carbon;
 use PDF;
+use Illuminate\Support\Facades\Storage;
+
 class HomeController extends Controller
 {
     /**
@@ -138,8 +140,20 @@ class HomeController extends Controller
         $ser->precio=$request->precio;
         $ser->descripcion=$request->descripcion;
         $ser->save();
+
+        if ($request->hasFile('foto')) {
+            $foto=$ser->id.'_'.Carbon::now().'.'.$request->foto->extension();
+            $path = $request->foto->storeAs('servicios', $foto,'public');
+            $ser->foto=$foto;    
+            $ser->save();
+        }
+
         $request->session()->flash('success','Servicio guardado');
         
+
+
+
+
          if ($request->opcion=='orden') {
             return redirect()->route('ordenes');
         }else{
@@ -172,6 +186,17 @@ class HomeController extends Controller
         $ser->nombre=$request->nombre;
         $ser->precio=$request->precio;
         $ser->descripcion=$request->descripcion;
+
+        
+        if ($request->hasFile('foto')) {
+            Storage::disk('public')->delete('servicios/'.$ser->foto);
+
+            $foto=$ser->id.'_'.Carbon::now().'.'.$request->foto->extension();
+            $path = $request->foto->storeAs('servicios', $foto,'public');
+            $ser->foto=$foto;    
+            $ser->save();
+        }
+
         $ser->save();
         $request->session()->flash('success','Servicio actualizado');
         return redirect()->route('servicios');
@@ -194,7 +219,7 @@ class HomeController extends Controller
         $ser->placa=$request->placa;
         $ser->color=$request->color;
         $ser->descripcion=$request->descripcion;
-        $ser->duenio=$request->duenio;
+        $ser->duenio=$request->Propietario;
         $ser->save();
         $request->session()->flash('success','Vehículo guardado');
         if ($request->opcion=='orden') {
@@ -230,6 +255,7 @@ class HomeController extends Controller
         $ser->placa=$request->placa;
         $ser->color=$request->color;
         $ser->descripcion=$request->descripcion;
+        $ser->duenio=$request->Propietario;
         $ser->save();
         $request->session()->flash('success','Vehículo actualizado');
         return redirect()->route('autos');

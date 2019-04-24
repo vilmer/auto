@@ -3,6 +3,8 @@
 namespace App\DataTables;
 
 use App\Servicio;
+use Illuminate\Support\Facades\Storage;
+
 use Yajra\DataTables\Services\DataTable;
 
 class ServicioDataTable extends DataTable
@@ -16,12 +18,16 @@ class ServicioDataTable extends DataTable
     public function dataTable($query)
     {
         return datatables($query)
+            ->editColumn('foto',function($s){
+                $url=Storage::url('public/servicios/'.$s->foto);
+                return '<img src="'.$url.'" alt="" class="img-fluid" >';
+            })
             ->addColumn('action', function($s){
                
                 return view('servicios.acciones', ['s'=>$s])->render();
 
 
-            })->rawColumns(['action']);
+            })->rawColumns(['action','foto']);
     }
 
     /**
@@ -32,7 +38,7 @@ class ServicioDataTable extends DataTable
      */
     public function query(Servicio $model)
     {
-        return $model->newQuery()->select($this->getColumns());
+        return $model->newQuery()->select($this->getColumns())->orderBy('created_at','desc');;
     }
 
     /**
@@ -45,7 +51,7 @@ class ServicioDataTable extends DataTable
         return $this->builder()
                     ->columns($this->getColumnsTable())
                     ->minifiedAjax()
-                    ->addAction(['width' => '80px','title'=>'Acciones'])
+                    ->addAction(['width' => '80px','title'=>'Acciones','printable' => false, 'exportable' => false])
                     ->parameters($this->getBuilderParameters());
     }
 
@@ -58,6 +64,7 @@ class ServicioDataTable extends DataTable
     {
         return [
             'id',
+            'foto',
             'nombre',
             'precio',
             'descripcion',
@@ -70,6 +77,7 @@ class ServicioDataTable extends DataTable
     {
         return [
             /*'id',*/
+            'foto'=>['exportable' => false],
             'nombre',
             'precio',
             'descripcion'=>['title'=>'Descripción'],

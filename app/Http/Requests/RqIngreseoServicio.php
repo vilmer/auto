@@ -27,7 +27,8 @@ class RqIngreseoServicio extends FormRequest
         return [
             'nombre' => 'required|unique:servicio,nombre|max:255|string',
             'precio' => 'required|regex:'.$decimal_rgx,
-            'descripcion'=>'nullable|max:255|string'
+            'descripcion'=>'nullable|max:255|string',
+            'foto'=>'nullable|mimes:jpeg,jpg,png',
         ];
     }
 }

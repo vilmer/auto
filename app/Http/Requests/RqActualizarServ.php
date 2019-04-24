@@ -28,7 +28,8 @@ class RqActualizarServ extends FormRequest
             'id'=>'required',
             'nombre' => 'required|max:255|string|unique:servicio,nombre,'.$this->input('id'),
             'precio' => 'required|regex:'.$decimal_rgx,
-            'descripcion'=>'nullable|max:255|string'
+            'descripcion'=>'nullable|max:255|string',
+            'foto'=>'nullable|mimes:jpeg,jpg,png',
         ];
     }
 }

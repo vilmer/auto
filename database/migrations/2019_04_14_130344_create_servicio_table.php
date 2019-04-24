@@ -19,6 +19,7 @@ class CreateServicioTable extends Migration
             $table->string('nombre');
             $table->decimal('precio');
             $table->string('descripcion')->nullable();
+            $table->string('foto')->nullable();
         });
     }
 

@@ -14,18 +14,19 @@
                     <form action="{{ route('guardarAuto') }}" method="post">
                     @csrf
                      <div class="form-group">
-                        <label for="duenio" class="">{{ __('DUEÑO') }}<span class="text-danger">*</span> </label>
-                          <input id="duenio" type="text" class="form-control{{ $errors->has('duenio') ? ' is-invalid' : '' }}" name="duenio" value="{{ old('duenio') }}" required placeholder="Ingrese.." autofocus>
+                        <label for="Propietario" class="">{{ __('PROPIETARIO') }}<span class="text-danger">*</span> </label>
+                          <input id="Propietario" type="text" class="form-control{{ $errors->has('Propietario') ? ' is-invalid' : '' }}" name="Propietario" value="{{ old('Propietario') }}" required placeholder="Ingrese.." autofocus>
 
-                          @if ($errors->has('duenio'))
+                          @if ($errors->has('Propietario'))
                               <span class="invalid-feedback" role="alert">
-                                  <strong>{{ $errors->first('duenio') }}</strong>
+                                  <strong>{{ $errors->first('Propietario') }}</strong>
                               </span>
                           @endif
                     </div>
+
                       <div class="form-group">
                         <label for="placa">PLACA<span class="text-danger">*</span></label>
-                        <input type="text" class="form-control{{ $errors->has('placa') ? ' is-invalid' : '' }}" id="placa" aria-describedby="nombreHelp" placeholder="Ingrese.." value="{{ old('placa') }}" name="placa" autofocus="" required="">
+                        <input type="text" class="form-control{{ $errors->has('placa') ? ' is-invalid' : '' }}" id="placa" aria-describedby="nombreHelp" placeholder="Ingrese.." value="{{ old('placa') }}" name="placa" required="">
                         <small id="nombreHelp" class="form-text text-muted">Ej, XBA-001</small>
                         @if ($errors->has('placa'))
                             <span class="invalid-feedback" role="alert">
@@ -47,8 +48,9 @@
                         
 
                         <div class="form-group">
-                            <label for="descripcion">Descripción</label>
-                            <textarea class="form-control{{ $errors->has('descripcion') ? ' is-invalid' : '' }}" id="descripcion" rows="3" placeholder="Ingrese detalles..." name="descripcion">{{ old('descripcion') }}</textarea>
+                            <label for="descripcion">AÑO<span class="text-danger">*</span></label>
+                            
+                            <input type="number" required="" name="descripcion" value="{{ old('descripcion') }}" class="form-control{{ $errors->has('descripcion') ? ' is-invalid' : '' }}" id="descripcion" placeholder="Ingrese" >
 
                           
                             @if ($errors->has('descripcion'))
@@ -59,6 +61,7 @@
                         </div>
 
                       <button type="submit" class="btn btn-primary">GUARDAR</button>
+                      <a href="{{ route('home') }}" class="btn btn-danger float-right">Cancelar</a>
                     </form>
                 </div>
             </div>

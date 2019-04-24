@@ -29,7 +29,7 @@ class AutoDataTable extends DataTable
      */
     public function query(Auto $model)
     {
-        return $model->newQuery()->select($this->getColumns());
+        return $model->newQuery()->select($this->getColumns())->orderBy('created_at','desc');
     }
 
     /**
@@ -42,7 +42,7 @@ class AutoDataTable extends DataTable
         return $this->builder()
                     ->columns($this->getColumnsTable())
                     ->minifiedAjax()
-                    ->addAction(['width' => '80px','title'=>'Acciones'])
+                    ->addAction(['width' => '80px','title'=>'Acciones','printable' => false, 'exportable' => false])
                     ->parameters($this->getBuilderParameters());
     }
 
@@ -68,10 +68,10 @@ class AutoDataTable extends DataTable
     {
         return [
             /*'id',*/
-            'duenio'=>['title'=>'Dueño'],
+            'duenio'=>['title'=>'Propietario'],
             'placa',
             'color',
-            'descripcion'=>['title'=>'Descripción'],
+            'descripcion'=>['title'=>'Año'],
             'created_at'=>['title'=>'Creado'],
             'updated_at'=>['title'=>'Actualizado']
         ];

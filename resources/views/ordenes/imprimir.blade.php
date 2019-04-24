@@ -16,15 +16,15 @@
 </head>
 <body>
 	<center><h1>Orden # {{ $o->id }}</h1></center>	
-	<i>Información de Dueño</i>
+	<i>Información de Propietario</i>
 	<table>
 		<tr>
-			<td><strong>Dueño</strong></td>
+			<td><strong>Propietario</strong></td>
 			<td>{{ $o->auto->duenio }}</td>
 		</tr>
 	</table>
 <br>
-	<i>Información de auto</i>
+	<i>Información de vehículo</i>
 	<table>
 		<tr>
 			<td><strong>PLACA</strong></td>
@@ -38,7 +38,7 @@
 		</tr>
 		<tr>
 			
-			<td><strong>DESCRIPCIÓN</strong></td>
+			<td><strong>PLACA</strong></td>
 			<td>{{ $o->auto->descripcion ?? '...' }}</td>
 		</tr>
 	</table>

@@ -12,9 +12,9 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
-
+<link rel="stylesheet" href="{{ asset('dist/vendor/bootstrap/css/bootstrap.min.css') }}">
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    
 
   <!-- Custom fonts for this template -->
   <link href="{{ asset('dist/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">

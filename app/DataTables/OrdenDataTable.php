@@ -67,7 +67,7 @@ class OrdenDataTable extends DataTable
         return $this->builder()
                     ->columns($this->getColumnsTable())
                     ->minifiedAjax()
-                    ->addAction(['width' => '80px','title'=>'Acciones'])
+                    ->addAction(['width' => '80px','title'=>'Acciones','printable' => false, 'exportable' => false])
                     ->parameters($this->getBuilderParameters());
     }
 
