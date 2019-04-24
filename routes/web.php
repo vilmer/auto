@@ -14,8 +14,7 @@
 Route::get('/', function () {
     /*Artisan::call('cache:clear');
     Artisan::call('config:clear');
-    Artisan::call('config:cache');
-    $exitCode = Artisan::call('storage:link', [] );*/
+    Artisan::call('config:cache');*/
     return view('welcome');
 });
 
