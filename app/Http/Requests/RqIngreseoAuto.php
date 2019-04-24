@@ -23,7 +23,7 @@ class RqIngreseoAuto extends FormRequest
      */
     public function rules()
     {
-        $rgxPlaca="/^[A-Za-z]{4}[0-9]{4}\z/";
+        $rgxPlaca="/^[A-Za-z]{3}[0-9]{4}\z/";
         
         $reg = "/^[\pL\s]+$/u";
         

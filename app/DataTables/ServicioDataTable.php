@@ -81,8 +81,8 @@ class ServicioDataTable extends DataTable
             'nombre',
             'precio',
             'descripcion'=>['title'=>'Descripción'],
-            'created_at'=>['title'=>'Creado'],
-            'updated_at'=>['title'=>'Actualizado']
+            // 'created_at'=>['title'=>'Creado'],
+            // 'updated_at'=>['title'=>'Actualizado']
         ];
     }
 

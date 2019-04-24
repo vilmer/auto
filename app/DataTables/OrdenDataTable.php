@@ -99,7 +99,7 @@ class OrdenDataTable extends DataTable
             /*'detalle'=>['title'=>'Detalle'],*/
             'servicios'=>['title'=>'Servicios'],
             'created_at'=>['title'=>'Creado'],
-            'updated_at'=>['title'=>'Actualizado']
+            // 'updated_at'=>['title'=>'Actualizado']
         ];
     }
 

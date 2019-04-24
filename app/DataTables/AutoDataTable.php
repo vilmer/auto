@@ -72,8 +72,8 @@ class AutoDataTable extends DataTable
             'placa',
             'color',
             'descripcion'=>['title'=>'Año'],
-            'created_at'=>['title'=>'Creado'],
-            'updated_at'=>['title'=>'Actualizado']
+            // 'created_at'=>['title'=>'Creado'],
+            // 'updated_at'=>['title'=>'Actualizado']
         ];
     }
 
