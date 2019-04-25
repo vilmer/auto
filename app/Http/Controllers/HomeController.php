@@ -47,13 +47,14 @@ class HomeController extends Controller
 
 
     /*ordenes*/
-    public function ordenes()
+    public function ordenes(Request $request)
     {
         $data = array(
             'encargados' => User::where('perfil','empleado')->get(),
             'autos'=>Auto::all(),
             'servicios'=>Servicio::all()
          );
+       
         return view('ordenes.index',$data);
     }
 
@@ -101,6 +102,7 @@ class HomeController extends Controller
            $i->servicio_id=$serv;
            $i->save();
        }
+       
         $request->session()->flash('success','Orden guardado');
         return redirect()->route('ordenes');
         
@@ -221,10 +223,12 @@ class HomeController extends Controller
         $ser->descripcion=$request->descripcion;
         $ser->duenio=$request->Propietario;
         $ser->save();
-        $request->session()->flash('success','Vehículo guardado');
+        
         if ($request->opcion=='orden') {
+            $request->session()->flash('autook',$ser);
             return redirect()->route('ordenes');
         }else{
+            $request->session()->flash('success','Vehículo guardado');
             return redirect()->route('autos');    
         }
         

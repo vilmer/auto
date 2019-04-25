@@ -12,14 +12,24 @@
 
                 <div class="card-body">
                     <button class="btn btn-link float-right" onclick="agregar(this);">Registrar vehículo</button>
+                    
+                          
+                   
                  <form id="" action="{{ route('ingresoOrden') }}" method="post">
                     @csrf
                     @if(count($autos)>0)
                       <div class="form-group">
                         <label for="vehiculo">Selecione vehículo</label>
                         <select class="selectpicker show-tick show-menu-arrow form-control" data-live-search="true" title="Selecione vehículo..." data-header="Selecione vehículo" required="" name="vehiculo" data-none-results-text="No hay resultados coincidentes {0}<button type='button' class='btn btn-link' data-toggle='modal' data-target='#MODALAUTO'>Registrar vehículo</button>">
+
+                          
+                          @php($estado=false)
+                          @if(Session::has('autook'))
+                            @php($estado=true)
+                          @endif
+                        
                            @foreach($autos as $a)
-                            <option value="{{ $a->id }}" data-subtext="{{ $a->color }}" {{ (old('vehiculo') == $a->id ? 'selected':'') }}>{{ $a->placa }} - <small>{{ $a->duenio }}</small></option>
+                            <option value="{{ $a->id }}" data-subtext="{{ $a->color }}" {{ $estado==true ? 'selected':'' }} {{ (old('vehiculo') == $a->id ? 'selected':'') }}>{{ $a->placa }} - <small>{{ $a->duenio }}</small></option>
                            @endforeach
                           </select>
                       </div>
