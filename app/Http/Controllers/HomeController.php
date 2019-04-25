@@ -51,7 +51,7 @@ class HomeController extends Controller
     {
         $data = array(
             'encargados' => User::where('perfil','empleado')->get(),
-            'autos'=>Auto::all(),
+            'autos'=>Auto::orderBy('placa','asc')->get(),
             'servicios'=>Servicio::all()
          );
        

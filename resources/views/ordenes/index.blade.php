@@ -23,13 +23,13 @@
                         <select class="selectpicker show-tick show-menu-arrow form-control" data-live-search="true" title="Selecione vehículo..." data-header="Selecione vehículo" required="" name="vehiculo" data-none-results-text="No hay resultados coincidentes {0}<button type='button' class='btn btn-link' data-toggle='modal' data-target='#MODALAUTO'>Registrar vehículo</button>">
 
                           
-                          @php($estado=false)
+                          @php($estado=0)
                           @if(Session::has('autook'))
-                            @php($estado=true)
+                            @php($estado=Session::get('autook')->id)
                           @endif
                         
                            @foreach($autos as $a)
-                            <option value="{{ $a->id }}" data-subtext="{{ $a->color }}" {{ $estado==true ? 'selected':'' }} {{ (old('vehiculo') == $a->id ? 'selected':'') }}>{{ $a->placa }} - <small>{{ $a->duenio }}</small></option>
+                            <option value="{{ $a->id }}" data-subtext="{{ $a->color }}" {{ $estado==$a->id ? 'selected':'' }} {{ (old('vehiculo') == $a->id ? 'selected':'') }}>{{ $a->placa }} - <small>{{ $a->duenio }}</small></option>
                            @endforeach
                           </select>
                       </div>
